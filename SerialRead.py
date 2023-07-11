@@ -1,14 +1,16 @@
 import serial
 import csv
-
+from datetime import datetime
 
 serial_port = 'COM13'  # Update with the correct port
 
 baud_rate = 115200
 ser = serial.Serial(serial_port, baud_rate)
 
-# change the CSV file name each experiment to save the data
-csv_file = open('sensor_data.csv', 'w', newline='')
+current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+csv_filename = f"sensor_data_{current_time}.csv"
+
+csv_file = open(csv_filename, 'w', newline='')
 csv_writer = csv.writer(csv_file)
 
 # Header
